@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-$mydb = new mysqli('10.0.0.22','ubuntu','ubuntu','IT490');
+$mydb = new mysqli('10.128.0.3','admin','admin','login');
 
 if ($mydb->errno != 0)
 {
