@@ -9,14 +9,16 @@ require_once('rabbitMQLib.inc');
 session_start();
 $USER = ($_POST["user"]);
 $PASS = ($_POST["pass"]);
-$TYPE = ($_POST["text"]);
+$NAME = ($_POST["text"]);
 $EMAIL =  ($_POST["email"]);
+$TYPE = "register";
 
 $client = new rabbitMQClient("callofduty.ini", "DatabaseAccess");
 
 $login->select = $TYPE;
 $login->username = $USER;
 $login->password = $PASS;
+$login->name= $NAME;
 $login->email = $email;
 
 //JSON 
