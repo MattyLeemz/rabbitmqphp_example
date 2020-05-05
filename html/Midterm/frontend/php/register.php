@@ -4,8 +4,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ini_set('display_errors', 1);
 
 //Access to RMQ
-include("callofduty.php");
-include("callofduty1.php");
+include("../rabbitmqphp_example/callofduty.php");
+include("../rabbitmqphp_example/callofduty1.php");
 
 //registration.html
 $username = $_POST["Username"];
@@ -18,11 +18,11 @@ $email = $_POST["Email"];
         $_SESSION["password"] = $password;
         $_SESSION["message"] = "Newby";
 	//RMQ message to DB Queue
-	header("refresh:1; url = 'callofduty.php'");
+	header("refresh:1; url = '../rabbitmqphp_example/callofduty.php'");
 
 //MySQL access
-$host = "10.0.0.22";
-$user = "db1user";
+$host = "10.128.0.3";
+$user = "admin";
 $pass = "Admin1!Admin1!";
 $dbname = "db1";
 
