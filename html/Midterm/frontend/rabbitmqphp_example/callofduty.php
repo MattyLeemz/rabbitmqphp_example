@@ -15,21 +15,20 @@ $TYPE = "register";
 
 $client = new rabbitMQClient("callofduty.ini", "DatabaseAccess");
 
-$login->select = $TYPE;
-$login->username = $USER;
-$login->password = $PASS;
-$login->name= $NAME;
-$login->email = $email;
-
-//JSON 
-$request = json_encode($login);
+$request = array(); //added this just now
+$request['type'] = "register";
+$request['username'] = $_POST["username"];
+$request['password'] = $_POST["password"];
+$request['name'] = $_POST["name"];
+$request['email'] = $_POST["email"];
+$request['message'] = $msg;
 
 $response = $client->send_request($request);
 //$response = $client->publish($request); 
 
 echo "Client received response: ".PHP_EOL;
 print_r($response);
-echo "\n";
+echo "\n\n";
 echo $argv[0]." DONE".PHP_EOL;
 
 ?>
