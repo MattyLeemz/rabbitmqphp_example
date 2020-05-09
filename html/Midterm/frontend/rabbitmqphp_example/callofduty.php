@@ -6,20 +6,20 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
-session_start();
-$USER = ($_POST["user"]);
-$PASS = ($_POST["pass"]);
-$NAME = ($_POST["text"]);
-$EMAIL =  ($_POST["email"]);
-$TYPE = "register";
+//session_start();
+//$USER = ($_POST["user"]);
+//$PASS = ($_POST["pass"]);
+//$NAME = ($_POST["text"]);
+//$EMAIL =  ($_POST["email"]);
+//$TYPE = "register";
 
 $client = new rabbitMQClient("callofduty.ini", "DatabaseAccess");
 
 $request = array(); //added this just now
 $request['type'] = "register";
-$request['username'] = $_POST["username"];
-$request['password'] = $_POST["password"];
-$request['name'] = $_POST["name"];
+$request['username'] = $_POST["user"];
+$request['password'] = $_POST["pass"];
+$request['name'] = $_POST["text"];
 $request['email'] = $_POST["email"];
 $request['message'] = $msg;
 
