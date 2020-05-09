@@ -15,8 +15,8 @@ ini_set('log_errors_max_len', 1024);
 
 function doLogin($user_name,$pass)
 {
-	// lookup username in databas
-	$dbConnect = new mysqli('10.128.0.3/phpmyadmin/','admin','admin','login');
+	// lookup username in databa
+	$dbConnect = new mysqli('localhost','admin','admin','login');
 
 	if(! $dbConnect) {
 		die("Connection failed");
@@ -25,7 +25,7 @@ function doLogin($user_name,$pass)
 	echo "<br>";
 	// check username and password
 	
-	$query = "SELECT * FROM Info WHERE username = '$user_name' AND password = '$pass'";
+	$query = "SELECT * FROM users WHERE username = '$user_name' AND password = '$pass'";
 $result = mysqli_query($dbConnect, $query);
 echo "<br>";
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
@@ -42,7 +42,7 @@ if (!$row == 1) {
     //return false if not valid
 }
 
-function doRegister($username, $passw){
+function doRegister($username, $password,$name,$email){
 
 
        // lookup username in databas
@@ -56,8 +56,8 @@ function doRegister($username, $passw){
         echo "<br>";
         // check username and password
 
-	$query = "SELECT * FROM Info WHERE username = '$username'";
-	$query2 = "INSERT INTO Info VALUES (NULL,'$username', '$passw')";
+	$query = "SELECT * FROM users WHERE username = '$username'";
+	$query2 = "INSERT INTO users (username, password, name, email) VALUES ('$username', '$password','$name','$email')";
 $result = mysqli_query($dbConnect, $query);
 echo "<br>";
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
@@ -81,18 +81,19 @@ function requestProcessor($request)
   var_dump($request);
   if(!isset($request['type']))
   {
+	echo "Error: Unsupported message type";
     return "ERROR: unsupported message type";
   }
   switch ($request['type'])
   {
-    case "login":
+    case "Login":
       return doLogin($request['username'],$request['password']);
     case "validate_session":
 	    return doValidate($request['sessionId']);
    case "register":
-	   return doRegister($request['username'],$request['password']);
+	   return doRegister($request['username'],$request['password'],$request['name'],$request['email']);
   }
-  return array("returnCode" => '0', 'message'=>"Server received request and processed");
+   return array("returnCode" => '0', 'message'=>"Test Am i right??");
 }
 
 $server = new rabbitMQServer("testRabbitMQ.ini","testServer");
