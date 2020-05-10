@@ -15,6 +15,17 @@ $request['message'] = $msg;
 $response = $client->send_request($request);
 //$response = $client->publish($request);
 
+if ($response = 1)
+	{
+		header("Location: ../html/successpage.html");
+	}
+
+else
+	{
+		header("Location: ../html/failpage.html");
+
+	}
+
 echo "client received response: ".PHP_EOL;
 print_r($response);
 echo "\n\n";
