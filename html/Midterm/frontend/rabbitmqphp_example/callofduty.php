@@ -17,9 +17,9 @@ $client = new rabbitMQClient("callofduty.ini", "DatabaseAccess");
 
 $request = array(); //added this just now
 $request['type'] = "register";
-$request['username'] = $_POST["user"];
-$request['password'] = $_POST["pass"];
-$request['name'] = $_POST["text"];
+$request['username'] = $_POST["username"];
+$request['password'] = $_POST["password"];
+$request['name'] = $_POST["name"];
 $request['email'] = $_POST["email"];
 $request['message'] = $msg;
 
