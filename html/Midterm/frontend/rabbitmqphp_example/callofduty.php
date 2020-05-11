@@ -26,6 +26,19 @@ $request['message'] = $msg;
 $response = $client->send_request($request);
 //$response = $client->publish($request); 
 
+if ($response == true)
+	{
+		
+		header("Location: ../html/registersuccess.html");
+
+	}
+else
+	{
+		
+		header("Location: ../html/registered.html");
+
+	}
+
 echo "Client received response: ".PHP_EOL;
 print_r($response);
 echo "\n\n";
