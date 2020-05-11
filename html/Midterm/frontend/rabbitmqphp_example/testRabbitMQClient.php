@@ -15,11 +15,10 @@ $request['message'] = $msg;
 $response = $client->send_request($request);
 //$response = $client->publish($request);
 
-if ($response = 1)
+if ($response == true)
 	{
 		header("Location: ../html/successpage.html");
 	}
-
 else
 	{
 		header("Location: ../html/failpage.html");
