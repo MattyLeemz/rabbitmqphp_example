@@ -74,10 +74,25 @@ if ($row >= 1) {
         echo "Account Created";
         return true;
 }
+}
 
+function doGun($item){
+	$dbConnect = new mysqli('localhost','admin','admin','login');
+	if (!$dbConnect){
+		die ("Connection has failed");
+	}
+	$query = "SELECT * FROM weapons WHERE weapon = '$item'";
+	$result= mysqli_query($dbConnect,$query);
+	if($row=mysqli_fetch_assoc($result))
+	{
+		$one=print $row['weapon'];
+		$two=print $row['amt'];
+		$three=print $row['DMG'];
+	return "M4A1 has been in 3 COD Games and does a total of 102 Damage to get a kill ";
 
+	}
 
-
+	return;
 }
 
 function requestProcessor($request)
@@ -97,6 +112,8 @@ function requestProcessor($request)
 	    return doValidate($request['sessionId']);
    case "register":
 	   return doRegister($request['username'],$request['password'],$request['name'],$request['email']);
+   case "gun":
+	   return doGun($request['item']);
   }
    return array("returnCode" => '0', 'message'=>"Test Am i right??");
 }
