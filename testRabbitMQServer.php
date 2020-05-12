@@ -30,9 +30,13 @@ $result = mysqli_query($dbConnect, $query);
 echo "<br>";
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 if (!$row == 1) {
+	///$msg = 'false';
+	///echo $msg;
 	echo "UserName or Password not in database";
 	return false;
 }else{
+	//$msg = 'true';
+	//echo $msg ;
 	echo "Account is in database";
 	return true;
 }
@@ -61,7 +65,8 @@ function doRegister($username, $password,$name,$email){
 $result = mysqli_query($dbConnect, $query);
 echo "<br>";
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-if ($row == 1) {
+var_dump ($username, $password, $name, $email);
+if ($row >= 1) {
         echo "Username is in database!!!! Recreate Account with different username";
         return false;
 }else{
