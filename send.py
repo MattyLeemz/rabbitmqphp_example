@@ -2,7 +2,7 @@
 import pika
 
 credentials = pika.PlainCredentials(username='admin', password='guest')
-connection =  pika.BlockingConnection(pika.ConnectionParameters(host='10.0.0.24',
+connection =  pika.BlockingConnection(pika.ConnectionParameters(host='10.128.0.4',
                                                       credentials=credentials))
 
 
